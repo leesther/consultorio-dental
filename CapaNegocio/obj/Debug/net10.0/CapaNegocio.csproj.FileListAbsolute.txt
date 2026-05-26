@@ -1,0 +1,17 @@
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\bin\Debug\net10.0\CapaNegocio.deps.json
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\bin\Debug\net10.0\CapaNegocio.dll
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\bin\Debug\net10.0\CapaNegocio.pdb
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\bin\Debug\net10.0\CapaDatos.dll
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\bin\Debug\net10.0\CapaEntidades.dll
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\bin\Debug\net10.0\CapaDatos.pdb
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\bin\Debug\net10.0\CapaEntidades.pdb
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.csproj.AssemblyReference.cache
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.AssemblyInfoInputs.cache
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.AssemblyInfo.cs
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.csproj.CoreCompileInputs.cache
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNego.81B9D119.Up2Date
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.dll
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\refint\CapaNegocio.dll
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.pdb
+c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\ref\CapaNegocio.dll

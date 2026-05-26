@@ -1,0 +1,11 @@
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\bin\Debug\net10.0\CapaEntidades.deps.json
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\bin\Debug\net10.0\CapaEntidades.dll
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\bin\Debug\net10.0\CapaEntidades.pdb
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEntidades.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEntidades.AssemblyInfoInputs.cache
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEntidades.AssemblyInfo.cs
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEntidades.csproj.CoreCompileInputs.cache
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEntidades.dll
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\refint\CapaEntidades.dll
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEntidades.pdb
+c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\ref\CapaEntidades.dll

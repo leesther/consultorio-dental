@@ -1,0 +1,15 @@
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\bin\Release\net10.0\CapaDatos.deps.json
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\bin\Release\net10.0\CapaDatos.dll
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\bin\Release\net10.0\CapaDatos.pdb
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\bin\Release\net10.0\CapaEntidades.dll
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\bin\Release\net10.0\CapaEntidades.pdb
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\CapaDatos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\CapaDatos.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\CapaDatos.AssemblyInfo.cs
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\CapaDatos.csproj.Up2Date
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\CapaDatos.dll
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\refint\CapaDatos.dll
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\CapaDatos.pdb
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Release\net10.0\ref\CapaDatos.dll
