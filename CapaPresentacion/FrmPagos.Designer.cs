@@ -72,9 +72,7 @@ namespace CapaPresentacion
             groupBoxFiltro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPagos).BeginInit();
             SuspendLayout();
-            // 
-            // panelTop
-            // 
+            
             panelTop.BackColor = Color.FromArgb(0, 102, 204);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
@@ -82,9 +80,7 @@ namespace CapaPresentacion
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1058, 45);
             panelTop.TabIndex = 3;
-            // 
-            // groupBoxForm
-            // 
+            
             groupBoxForm.Controls.Add(btnEliminar);
             groupBoxForm.Controls.Add(btnEditar);
             groupBoxForm.Controls.Add(btnLimpiar);
@@ -108,9 +104,8 @@ namespace CapaPresentacion
             groupBoxForm.TabIndex = 2;
             groupBoxForm.TabStop = false;
             groupBoxForm.Text = "Datos del Pago";
-            // 
-            // btnEliminar
-            // 
+            
+            
             btnEliminar.BackColor = Color.FromArgb(220, 53, 69);
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -123,9 +118,7 @@ namespace CapaPresentacion
             btnEliminar.Text = "🗑 Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
-            // 
-            // btnEditar
-            // 
+            
             btnEditar.BackColor = Color.FromArgb(255, 193, 7);
             btnEditar.FlatStyle = FlatStyle.Flat;
             btnEditar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -138,9 +131,7 @@ namespace CapaPresentacion
             btnEditar.Text = "✏ Editar";
             btnEditar.UseVisualStyleBackColor = false;
             btnEditar.Click += btnEditar_Click;
-            // 
-            // btnLimpiar
-            // 
+            
             btnLimpiar.BackColor = Color.FromArgb(108, 117, 125);
             btnLimpiar.FlatStyle = FlatStyle.Flat;
             btnLimpiar.Font = new Font("Segoe UI", 9F);
@@ -153,9 +144,7 @@ namespace CapaPresentacion
             btnLimpiar.Text = "\U0001f9f9 Limpiar";
             btnLimpiar.UseVisualStyleBackColor = false;
             btnLimpiar.Click += btnLimpiar_Click;
-            // 
-            // btnRegistrar
-            // 
+            
             btnRegistrar.BackColor = Color.FromArgb(40, 167, 69);
             btnRegistrar.FlatStyle = FlatStyle.Flat;
             btnRegistrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -168,9 +157,7 @@ namespace CapaPresentacion
             btnRegistrar.Text = "✔ Registrar";
             btnRegistrar.UseVisualStyleBackColor = false;
             btnRegistrar.Click += btnRegistrar_Click;
-            // 
-            // txtIdPago
-            // 
+            
             txtIdPago.Font = new Font("Segoe UI", 9F);
             txtIdPago.Location = new Point(122, 19);
             txtIdPago.Margin = new Padding(3, 2, 3, 2);
@@ -179,18 +166,14 @@ namespace CapaPresentacion
             txtIdPago.Size = new Size(106, 23);
             txtIdPago.TabIndex = 4;
             txtIdPago.TabStop = false;
-            // 
-            // labelIdPago
-            // 
+            
             labelIdPago.Font = new Font("Segoe UI", 9F);
             labelIdPago.Location = new Point(10, 21);
             labelIdPago.Name = "labelIdPago";
             labelIdPago.Size = new Size(105, 17);
             labelIdPago.TabIndex = 5;
             labelIdPago.Text = "ID Pago:";
-            // 
-            // cmbPaciente
-            // 
+            
             cmbPaciente.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPaciente.Font = new Font("Segoe UI", 9F);
             cmbPaciente.Location = new Point(122, 49);
@@ -198,54 +181,42 @@ namespace CapaPresentacion
             cmbPaciente.Name = "cmbPaciente";
             cmbPaciente.Size = new Size(256, 23);
             cmbPaciente.TabIndex = 6;
-            // 
-            // labelPaciente
-            // 
+            
             labelPaciente.Font = new Font("Segoe UI", 9F);
             labelPaciente.Location = new Point(10, 51);
             labelPaciente.Name = "labelPaciente";
             labelPaciente.Size = new Size(105, 17);
             labelPaciente.TabIndex = 7;
             labelPaciente.Text = "Paciente:";
-            // 
-            // txtMetodo
-            // 
+            
             txtMetodo.Font = new Font("Segoe UI", 9F);
             txtMetodo.Location = new Point(122, 109);
             txtMetodo.Margin = new Padding(3, 2, 3, 2);
             txtMetodo.Name = "txtMetodo";
             txtMetodo.Size = new Size(256, 23);
             txtMetodo.TabIndex = 8;
-            // 
-            // labelMetodo
-            // 
+            
             labelMetodo.Font = new Font("Segoe UI", 9F);
             labelMetodo.Location = new Point(10, 111);
             labelMetodo.Name = "labelMetodo";
             labelMetodo.Size = new Size(105, 17);
             labelMetodo.TabIndex = 9;
             labelMetodo.Text = "Método de Pago:";
-            // 
-            // labelMonto
-            // 
+            
             labelMonto.Font = new Font("Segoe UI", 9F);
             labelMonto.Location = new Point(10, 81);
             labelMonto.Name = "labelMonto";
             labelMonto.Size = new Size(105, 17);
             labelMonto.TabIndex = 10;
             labelMonto.Text = "Monto (S/):";
-            // 
-            // txtMonto
-            // 
+            
             txtMonto.Font = new Font("Segoe UI", 9F);
             txtMonto.Location = new Point(122, 79);
             txtMonto.Margin = new Padding(3, 2, 3, 2);
             txtMonto.Name = "txtMonto";
             txtMonto.Size = new Size(132, 23);
             txtMonto.TabIndex = 11;
-            // 
-            // txtDescripcion
-            // 
+            
             txtDescripcion.Font = new Font("Segoe UI", 9F);
             txtDescripcion.Location = new Point(122, 139);
             txtDescripcion.Margin = new Padding(3, 2, 3, 2);
@@ -253,18 +224,14 @@ namespace CapaPresentacion
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.Size = new Size(256, 46);
             txtDescripcion.TabIndex = 12;
-            // 
-            // labelDescripcion
-            // 
+            
             labelDescripcion.Font = new Font("Segoe UI", 9F);
             labelDescripcion.Location = new Point(10, 141);
             labelDescripcion.Name = "labelDescripcion";
             labelDescripcion.Size = new Size(105, 17);
             labelDescripcion.TabIndex = 13;
             labelDescripcion.Text = "Descripción:";
-            // 
-            // groupBoxFiltro
-            // 
+            
             groupBoxFiltro.Controls.Add(cmbFiltroPaciente);
             groupBoxFiltro.Controls.Add(labelFiltro);
             groupBoxFiltro.Controls.Add(btnFiltrar);
@@ -278,9 +245,7 @@ namespace CapaPresentacion
             groupBoxFiltro.TabIndex = 1;
             groupBoxFiltro.TabStop = false;
             groupBoxFiltro.Text = "Filtros";
-            // 
-            // cmbFiltroPaciente
-            // 
+            
             cmbFiltroPaciente.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFiltroPaciente.Font = new Font("Segoe UI", 9F);
             cmbFiltroPaciente.Location = new Point(88, 22);
@@ -288,18 +253,14 @@ namespace CapaPresentacion
             cmbFiltroPaciente.Name = "cmbFiltroPaciente";
             cmbFiltroPaciente.Size = new Size(246, 23);
             cmbFiltroPaciente.TabIndex = 0;
-            // 
-            // labelFiltro
-            // 
+            
             labelFiltro.Font = new Font("Segoe UI", 9F);
             labelFiltro.Location = new Point(10, 25);
             labelFiltro.Name = "labelFiltro";
             labelFiltro.Size = new Size(70, 17);
             labelFiltro.TabIndex = 1;
             labelFiltro.Text = "Paciente:";
-            // 
-            // btnFiltrar
-            // 
+            
             btnFiltrar.BackColor = Color.FromArgb(0, 123, 255);
             btnFiltrar.FlatStyle = FlatStyle.Flat;
             btnFiltrar.Font = new Font("Segoe UI", 9F);
@@ -312,9 +273,7 @@ namespace CapaPresentacion
             btnFiltrar.Text = "🔍 Filtrar";
             btnFiltrar.UseVisualStyleBackColor = false;
             btnFiltrar.Click += btnFiltrar_Click;
-            // 
-            // btnMostrarTodos
-            // 
+            
             btnMostrarTodos.BackColor = Color.FromArgb(108, 117, 125);
             btnMostrarTodos.FlatStyle = FlatStyle.Flat;
             btnMostrarTodos.Font = new Font("Segoe UI", 9F);
@@ -327,9 +286,7 @@ namespace CapaPresentacion
             btnMostrarTodos.Text = "📋 Mostrar Todos";
             btnMostrarTodos.UseVisualStyleBackColor = false;
             btnMostrarTodos.Click += btnMostrarTodos_Click;
-            // 
-            // dgvPagos
-            // 
+            
             dgvPagos.AllowUserToAddRows = false;
             dgvPagos.AllowUserToDeleteRows = false;
             dgvPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -344,64 +301,48 @@ namespace CapaPresentacion
             dgvPagos.Size = new Size(569, 375);
             dgvPagos.TabIndex = 0;
             dgvPagos.CellClick += dgvPagos_CellClick;
-            // 
-            // colIdPago
-            // 
+            
             colIdPago.DataPropertyName = "IdPago";
             colIdPago.HeaderText = "ID";
             colIdPago.MinimumWidth = 6;
             colIdPago.Name = "colIdPago";
             colIdPago.ReadOnly = true;
-            // 
-            // colPaciente
-            // 
+            
             colPaciente.DataPropertyName = "PacienteNombre";
             colPaciente.HeaderText = "Paciente";
             colPaciente.Name = "colPaciente";
             colPaciente.ReadOnly = true;
-            // 
-            // colMonto
-            // 
+            
             colMonto.DataPropertyName = "Monto";
             dataGridViewCellStyle3.Format = "N2";
             colMonto.DefaultCellStyle = dataGridViewCellStyle3;
             colMonto.HeaderText = "Monto (S/)";
             colMonto.Name = "colMonto";
             colMonto.ReadOnly = true;
-            // 
-            // colMetodo
-            // 
+            
             colMetodo.DataPropertyName = "MetodoPago";
             colMetodo.HeaderText = "Método";
             colMetodo.Name = "colMetodo";
             colMetodo.ReadOnly = true;
-            // 
-            // colDescripcion
-            // 
+            
             colDescripcion.DataPropertyName = "Descripcion";
             colDescripcion.HeaderText = "Descripción";
             colDescripcion.Name = "colDescripcion";
             colDescripcion.ReadOnly = true;
-            // 
-            // colFecha
-            // 
+            
             colFecha.DataPropertyName = "FechaPago";
             dataGridViewCellStyle4.Format = "dd/MM/yyyy HH:mm";
             colFecha.DefaultCellStyle = dataGridViewCellStyle4;
             colFecha.HeaderText = "Fecha";
             colFecha.Name = "colFecha";
             colFecha.ReadOnly = true;
-            // 
-            // colIdPaciente
-            // 
+            
             colIdPaciente.DataPropertyName = "IdPaciente";
             colIdPaciente.HeaderText = "IdPaciente";
             colIdPaciente.Name = "colIdPaciente";
             colIdPaciente.ReadOnly = true;
             colIdPaciente.Visible = false;
-            // 
-            // FrmPagos
-            // 
+            
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 245, 245);

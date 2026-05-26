@@ -67,9 +67,7 @@ namespace CapaPresentacion
             ((System.ComponentModel.ISupportInitialize)dgvMovimientos).BeginInit();
             SuspendLayout();
 
-            // 
-            // panelTop
-            // 
+            
             panelTop.BackColor = Color.FromArgb(0, 102, 204);
             panelTop.Controls.Add(new Label
             {
@@ -82,27 +80,20 @@ namespace CapaPresentacion
             panelTop.Dock = DockStyle.Top;
             panelTop.Height = 60;
 
-            // 
-            // panelBalance
-            // 
             panelBalance.BackColor = Color.FromArgb(40, 167, 69);
             panelBalance.Controls.Add(lblBalance);
             panelBalance.Dock = DockStyle.Top;
             panelBalance.Height = 50;
             panelBalance.Location = new Point(0, 60);
 
-            // 
-            // lblBalance
-            // 
+            
             lblBalance.Dock = DockStyle.Fill;
             lblBalance.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblBalance.ForeColor = Color.White;
             lblBalance.Text = "Balance: S/ 0.00";
             lblBalance.TextAlign = ContentAlignment.MiddleCenter;
 
-            // 
-            // groupBoxForm
-            // 
+            
             groupBoxForm.Controls.Add(btnLimpiar);
             groupBoxForm.Controls.Add(btnRegistrar);
             groupBoxForm.Controls.Add(dtpFecha);
@@ -119,9 +110,7 @@ namespace CapaPresentacion
             groupBoxForm.Text = "Nuevo Movimiento";
             groupBoxForm.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
 
-            // 
-            // btnLimpiar
-            // 
+           
             btnLimpiar.BackColor = Color.FromArgb(108, 117, 125);
             btnLimpiar.FlatStyle = FlatStyle.Flat;
             btnLimpiar.Font = new Font("Segoe UI", 9F);
@@ -133,9 +122,7 @@ namespace CapaPresentacion
             btnLimpiar.UseVisualStyleBackColor = false;
             btnLimpiar.Click += btnLimpiar_Click;
 
-            // 
-            // btnRegistrar
-            // 
+           
             btnRegistrar.BackColor = Color.FromArgb(40, 167, 69);
             btnRegistrar.FlatStyle = FlatStyle.Flat;
             btnRegistrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -147,27 +134,21 @@ namespace CapaPresentacion
             btnRegistrar.UseVisualStyleBackColor = false;
             btnRegistrar.Click += btnRegistrar_Click;
 
-            // 
-            // dtpFecha
-            // 
+            
             dtpFecha.Font = new Font("Segoe UI", 9F);
             dtpFecha.Format = DateTimePickerFormat.Short;
             dtpFecha.Location = new Point(130, 195);
             dtpFecha.Name = "dtpFecha";
             dtpFecha.Size = new Size(200, 27);
 
-            // 
-            // labelFecha
-            // 
+           
             labelFecha.Font = new Font("Segoe UI", 9F);
             labelFecha.Location = new Point(12, 198);
             labelFecha.Name = "labelFecha";
             labelFecha.Size = new Size(110, 23);
             labelFecha.Text = "Fecha:";
 
-            // 
-            // cmbTipo
-            // 
+         
             cmbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipo.Font = new Font("Segoe UI", 9F);
             cmbTipo.Items.AddRange(new object[] { "Ingreso", "Egreso" });
@@ -175,53 +156,41 @@ namespace CapaPresentacion
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(200, 28);
 
-            // 
-            // labelTipo
-            // 
+            
             labelTipo.Font = new Font("Segoe UI", 9F);
             labelTipo.Location = new Point(12, 28);
             labelTipo.Name = "labelTipo";
             labelTipo.Size = new Size(110, 23);
             labelTipo.Text = "Tipo:";
 
-            // 
-            // txtMonto
-            // 
+             
             txtMonto.Font = new Font("Segoe UI", 9F);
             txtMonto.Location = new Point(130, 70);
             txtMonto.Name = "txtMonto";
             txtMonto.Size = new Size(200, 27);
 
-            // 
-            // labelMonto
-            // 
+            
             labelMonto.Font = new Font("Segoe UI", 9F);
             labelMonto.Location = new Point(12, 73);
             labelMonto.Name = "labelMonto";
             labelMonto.Size = new Size(110, 23);
             labelMonto.Text = "Monto (S/):";
 
-            // 
-            // txtDescripcion
-            // 
+           
             txtDescripcion.Font = new Font("Segoe UI", 9F);
             txtDescripcion.Location = new Point(130, 115);
             txtDescripcion.Multiline = true;
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.Size = new Size(290, 65);
 
-            // 
-            // labelDescripcion
-            // 
+           
             labelDescripcion.Font = new Font("Segoe UI", 9F);
             labelDescripcion.Location = new Point(12, 118);
             labelDescripcion.Name = "labelDescripcion";
             labelDescripcion.Size = new Size(110, 23);
             labelDescripcion.Text = "Descripción:";
 
-            // 
-            // groupBoxFiltro
-            // 
+            
             groupBoxFiltro.Controls.Add(cmbFiltroTipo);
             groupBoxFiltro.Controls.Add(labelFiltro);
             groupBoxFiltro.Controls.Add(btnFiltrar);
@@ -232,9 +201,7 @@ namespace CapaPresentacion
             groupBoxFiltro.Text = "Filtros";
             groupBoxFiltro.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
 
-            // 
-            // cmbFiltroTipo
-            // 
+            
             cmbFiltroTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFiltroTipo.Font = new Font("Segoe UI", 9F);
             cmbFiltroTipo.Items.AddRange(new object[] { "Ingreso", "Egreso" });
@@ -242,18 +209,13 @@ namespace CapaPresentacion
             cmbFiltroTipo.Name = "cmbFiltroTipo";
             cmbFiltroTipo.Size = new Size(200, 28);
 
-            // 
-            // labelFiltro
-            // 
             labelFiltro.Font = new Font("Segoe UI", 9F);
             labelFiltro.Location = new Point(12, 33);
             labelFiltro.Name = "labelFiltro";
             labelFiltro.Size = new Size(60, 23);
             labelFiltro.Text = "Tipo:";
 
-            // 
-            // btnFiltrar
-            // 
+             
             btnFiltrar.BackColor = Color.FromArgb(0, 123, 255);
             btnFiltrar.FlatStyle = FlatStyle.Flat;
             btnFiltrar.Font = new Font("Segoe UI", 9F);
@@ -265,9 +227,6 @@ namespace CapaPresentacion
             btnFiltrar.UseVisualStyleBackColor = false;
             btnFiltrar.Click += btnFiltrar_Click;
 
-            // 
-            // btnMostrarTodos
-            // 
             btnMostrarTodos.BackColor = Color.FromArgb(108, 117, 125);
             btnMostrarTodos.FlatStyle = FlatStyle.Flat;
             btnMostrarTodos.Font = new Font("Segoe UI", 9F);
@@ -279,9 +238,7 @@ namespace CapaPresentacion
             btnMostrarTodos.UseVisualStyleBackColor = false;
             btnMostrarTodos.Click += btnMostrarTodos_Click;
 
-            // 
-            // dgvMovimientos
-            // 
+            
             dgvMovimientos.AllowUserToAddRows = false;
             dgvMovimientos.AllowUserToDeleteRows = false;
             dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -300,51 +257,39 @@ namespace CapaPresentacion
             dgvMovimientos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMovimientos.Size = new Size(660, 500);
 
-            // 
-            // colId
-            // 
+            
             colId.DataPropertyName = "IdMovimiento";
             colId.HeaderText = "ID";
             colId.Name = "colId";
             colId.Width = 50;
 
-            // 
-            // colTipo
-            // 
+            
             colTipo.DataPropertyName = "TipoMovimiento";
             colTipo.HeaderText = "Tipo";
             colTipo.Name = "colTipo";
             colTipo.Width = 80;
 
-            // 
-            // colMonto
-            // 
+            
             colMonto.DataPropertyName = "Monto";
             colMonto.HeaderText = "Monto (S/)";
             colMonto.Name = "colMonto";
             colMonto.DefaultCellStyle.Format = "N2";
             colMonto.Width = 120;
 
-            // 
-            // colDescripcion
-            // 
+            
             colDescripcion.DataPropertyName = "Descripcion";
             colDescripcion.HeaderText = "Descripción";
             colDescripcion.Name = "colDescripcion";
             colDescripcion.Width = 280;
 
-            // 
-            // colFecha
-            // 
+            
             colFecha.DataPropertyName = "FechaMovimiento";
             colFecha.HeaderText = "Fecha";
             colFecha.Name = "colFecha";
             colFecha.DefaultCellStyle.Format = "dd/MM/yyyy";
             colFecha.Width = 100;
 
-            // 
-            // FrmMovimientos
-            // 
+            
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 245, 245);

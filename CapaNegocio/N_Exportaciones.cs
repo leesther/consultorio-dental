@@ -8,7 +8,7 @@ namespace CapaNegocio
     public class N_Exportaciones
     {
         /// <summary>
-        /// Exporta una lista de pagos a un archivo CSV.
+        
         /// </summary>
         public string ExportarPagosCSV(List<E_Pago> pagos, string rutaArchivo)
         {
@@ -32,7 +32,7 @@ namespace CapaNegocio
         }
 
         /// <summary>
-        /// Exporta una lista de pagos a un archivo Excel nativo (.xlsx).
+        
         /// </summary>
         public string ExportarPagosExcel(List<E_Pago> pagos, string rutaArchivo)
         {
@@ -41,7 +41,7 @@ namespace CapaNegocio
                 using var workbook = new XLWorkbook();
                 var ws = workbook.Worksheets.Add("Pagos");
 
-                // Encabezados
+                
                 ws.Cell(1, 1).Value = "ID Pago";
                 ws.Cell(1, 2).Value = "Paciente";
                 ws.Cell(1, 3).Value = "Monto";
@@ -49,13 +49,13 @@ namespace CapaNegocio
                 ws.Cell(1, 5).Value = "Descripción";
                 ws.Cell(1, 6).Value = "Fecha";
 
-                // Estilo de encabezados
+                
                 var headerRange = ws.Range(1, 1, 1, 6);
                 headerRange.Style.Font.Bold = true;
                 headerRange.Style.Fill.BackgroundColor = XLColor.FromArgb(0x333333);
                 headerRange.Style.Font.FontColor = XLColor.White;
 
-                // Datos
+                
                 for (int i = 0; i < pagos.Count; i++)
                 {
                     var pago = pagos[i];
@@ -68,7 +68,7 @@ namespace CapaNegocio
                     ws.Cell(row, 6).Value = pago.FechaPago.ToString("yyyy-MM-dd HH:mm:ss");
                 }
 
-                // Auto-ajustar columnas
+                
                 ws.Columns().AdjustToContents();
 
                 workbook.SaveAs(rutaArchivo);
@@ -81,7 +81,7 @@ namespace CapaNegocio
         }
 
         /// <summary>
-        /// Exporta reporte de ventas a CSV.
+        
         /// </summary>
         public string ExportarVentasCSV(List<E_ReporteVentas> ventas, string rutaArchivo)
         {
@@ -105,7 +105,7 @@ namespace CapaNegocio
         }
 
         /// <summary>
-        /// Exporta reporte de ventas a Excel nativo (.xlsx).
+        
         /// </summary>
         public string ExportarVentasExcel(List<E_ReporteVentas> ventas, string rutaArchivo, DateTime fechaInicio, DateTime fechaFin)
         {
@@ -114,7 +114,7 @@ namespace CapaNegocio
                 using var workbook = new XLWorkbook();
                 var ws = workbook.Worksheets.Add("Ventas");
 
-                // Encabezados
+                
                 ws.Cell(1, 1).Value = "Período";
                 ws.Cell(1, 2).Value = "Total Transacciones";
                 ws.Cell(1, 3).Value = "Total Ventas";
@@ -146,7 +146,7 @@ namespace CapaNegocio
         }
 
         /// <summary>
-        /// Exporta comprobantes a CSV.
+        
         /// </summary>
         public string ExportarComprobantesCSV(List<E_Comprobante> comprobantes, string rutaArchivo)
         {
@@ -170,7 +170,7 @@ namespace CapaNegocio
         }
 
         /// <summary>
-        /// Exporta comprobantes a Excel nativo (.xlsx).
+        
         /// </summary>
         public string ExportarComprobantesExcel(List<E_Comprobante> comprobantes, string rutaArchivo)
         {
@@ -224,7 +224,7 @@ namespace CapaNegocio
         }
 
         /// <summary>
-        /// Convierte contenido HTML a PDF usando DinkToPdf (wkhtmltopdf).
+        
         /// </summary>
         public byte[] ConvertirHtmlAPdf(string html)
         {
@@ -259,7 +259,7 @@ namespace CapaNegocio
         }
 
         /// <summary>
-        /// Genera un comprobante en formato HTML para posterior conversión a PDF.
+        
         /// </summary>
         public string GenerarComprobanteHTML(E_Comprobante comprobante, E_Pago pago)
         {
@@ -344,7 +344,7 @@ namespace CapaNegocio
         }
 
         /// <summary>
-        /// Genera reporte de ventas en formato HTML.
+        
         /// </summary>
         public string GenerarReporteVentasHTML(List<E_ReporteVentas> ventas, string titulo, DateTime fechaInicio, DateTime fechaFin)
         {

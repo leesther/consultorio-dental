@@ -49,7 +49,7 @@
             pnlHeader.SuspendLayout();
             SuspendLayout();
 
-            // pnlSidebar
+            
             pnlSidebar.BackColor = Color.FromArgb(30, 30, 46);
             pnlSidebar.Controls.Add(picLogo);
             pnlSidebar.Controls.Add(lblTitle);
@@ -67,7 +67,7 @@
             pnlSidebar.Size = new Size(230, 720);
             pnlSidebar.TabIndex = 0;
 
-            // picLogo
+            
             picLogo.BackColor = Color.Transparent;
             picLogo.Location = new Point(75, 25);
             picLogo.Name = "picLogo";
@@ -76,7 +76,7 @@
             picLogo.TabIndex = 8;
             picLogo.TabStop = false;
 
-            // lblTitle
+            
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
@@ -86,7 +86,7 @@
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Clínica Dental Leon";
 
-            // lblSubtitle
+            
             lblSubtitle.AutoSize = true;
             lblSubtitle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
             lblSubtitle.ForeColor = Color.FromArgb(160, 160, 180);
@@ -213,7 +213,7 @@
             btnExportar.MouseEnter += Btn_MouseEnter;
             btnExportar.MouseLeave += Btn_MouseLeave;
 
-            // pnlHeader
+            
             pnlHeader.BackColor = Color.FromArgb(245, 246, 250);
             pnlHeader.Controls.Add(lblWelcome);
             pnlHeader.Dock = DockStyle.Top;
@@ -222,7 +222,7 @@
             pnlHeader.Size = new Size(1030, 60);
             pnlHeader.TabIndex = 1;
 
-            // lblWelcome
+            
             lblWelcome.AutoSize = true;
             lblWelcome.Font = new Font("Segoe UI", 13F, FontStyle.Regular);
             lblWelcome.ForeColor = Color.FromArgb(50, 50, 70);
@@ -232,7 +232,7 @@
             lblWelcome.TabIndex = 0;
             lblWelcome.Text = "👋 Bienvenido a Clínica Dental Leon";
 
-            // pnlContent
+            
             pnlContent.BackColor = Color.FromArgb(245, 246, 250);
             pnlContent.Dock = DockStyle.Fill;
             pnlContent.Location = new Point(230, 60);
@@ -240,7 +240,7 @@
             pnlContent.Size = new Size(1030, 660);
             pnlContent.TabIndex = 2;
 
-            // Form1
+            
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 246, 250);

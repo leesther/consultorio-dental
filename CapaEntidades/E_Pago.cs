@@ -9,7 +9,7 @@
         public string? Descripcion { get; set; }
         public DateTime FechaPago { get; set; } = DateTime.Now;
 
-        // Datos de navegación (para consultas con JOIN)
+        
         public string? PacienteNombre { get; set; }
     }
 }

@@ -2,7 +2,7 @@ namespace CapaEntidades
 {
     public class E_Comprobante
     {
-        // Mapeo directo a BD
+        
         public int IdComprobante { get; set; }
         public int? IdPago { get; set; }
         public string TipoComprobante { get; set; } = string.Empty;
@@ -15,12 +15,12 @@ namespace CapaEntidades
         public string? PdfComprobante { get; set; }
         public DateTime FechaEmision { get; set; } = DateTime.Now;
 
-        // Propiedades auxiliares (datos de la clínica / navegación)
+        
         public string RazonSocial { get; set; } = "Clínica Dental S.A.C.";
         public string RUC { get; set; } = "20123456789";
         public string Estado { get; set; } = "Emitido";
 
-        // Propiedad compuesta para compatibilidad con código existente
+        
         public string NumeroComprobante
         {
             get => $"{Serie}-{Numero}";

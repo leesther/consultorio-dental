@@ -16,7 +16,7 @@ namespace CapaPresentacion
 
         private void PersonalizarDiseno()
         {
-            // Inicializar botones con color normal
+            
             btnFinanzas.BackColor = colorNormal;
             btnDashboard.BackColor = colorNormal;
             btnPagos.BackColor = colorNormal;
@@ -28,32 +28,30 @@ namespace CapaPresentacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Cargar Dashboard por defecto
+        
             lblWelcome.Text = "📊 Dashboard";
             btnDashboard.PerformClick();
         }
 
-        // ============================================================
-        // MÉTODO GENÉRICO PARA ABRIR FORMULARIOS DENTRO DEL PANEL
-        // ============================================================
+        
         private void AbrirFormulario(Form formularioHijo, Button botonMenu)
         {
-            // Cerrar formulario actual si existe
+            
             formularioActivo?.Close();
 
-            // Actualizar estilo de botones
+            
             if (botonActivo != null)
                 botonActivo.BackColor = colorNormal;
 
             botonActivo = botonMenu;
             botonActivo.BackColor = colorActivo;
 
-            // Configurar formulario hijo
+            
             formularioHijo.TopLevel = false;
             formularioHijo.FormBorderStyle = FormBorderStyle.None;
             formularioHijo.Dock = DockStyle.Fill;
 
-            // Insertar en el panel de contenido
+            
             pnlContent.Controls.Clear();
             pnlContent.Controls.Add(formularioHijo);
             formularioHijo.Show();
@@ -61,9 +59,7 @@ namespace CapaPresentacion
             formularioActivo = formularioHijo;
         }
 
-        // ============================================================
-        // EFECTOS HOVER EN BOTONES DEL MENÚ
-        // ============================================================
+        
         private void Btn_MouseEnter(object? sender, EventArgs e)
         {
             if (sender is Button btn && btn != botonActivo)
@@ -76,16 +72,14 @@ namespace CapaPresentacion
                 btn.BackColor = colorNormal;
         }
 
-        // ============================================================
-        // TOGGLE FINANZAS (EXPANDIR / COLAPSAR SUBMENÚS)
-        // ============================================================
+        
         private void btnFinanzas_Click(object? sender, EventArgs e)
         {
             finanzasExpandido = !finanzasExpandido;
 
             if (finanzasExpandido)
             {
-                // Expandir: mostrar submenús y desplazar Pacientes y Exportar
+                
                 btnFinanzas.Text = "💰  Finanzas  ▼";
 
                 btnDashboard.Visible = true;
@@ -93,13 +87,13 @@ namespace CapaPresentacion
                 btnMovimientos.Visible = true;
                 btnComprobantes.Visible = true;
 
-                // Reposicionar Pacientes y Exportar más abajo
+                
                 btnPacientes.Location = new Point(15, 445);
                 btnExportar.Location = new Point(15, 500);
             }
             else
             {
-                // Colapsar: ocultar submenús y restaurar posiciones
+                
                 btnFinanzas.Text = "💰  Finanzas  ▶";
 
                 btnDashboard.Visible = false;
@@ -107,15 +101,13 @@ namespace CapaPresentacion
                 btnMovimientos.Visible = false;
                 btnComprobantes.Visible = false;
 
-                // Restaurar posiciones originales de Pacientes y Exportar
+                
                 btnPacientes.Location = new Point(15, 240);
                 btnExportar.Location = new Point(15, 295);
             }
         }
 
-        // ============================================================
-        // HANDLERS DE NAVEGACIÓN
-        // ============================================================
+        
 
         private void btnDashboard_Click(object? sender, EventArgs e)
         {
@@ -144,10 +136,10 @@ namespace CapaPresentacion
         private void btnPacientes_Click(object? sender, EventArgs e)
         {
             lblWelcome.Text = "👥 Gestión de Pacientes";
-            // Validar que el formulario de pacientes existe
+            
             try
             {
-                // Usar reflection para instanciar FrmPacientes si existe
+                
                 var tipo = Type.GetType("CapaPresentacion.FrmPacientes, CapaPresentacion");
                 if (tipo != null)
                 {
@@ -156,7 +148,7 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    // Si no hay formulario de pacientes, mostrar mensaje en el panel
+                    
                     MostrarMensajeEnPanel("👥 Módulo de Pacientes", "Este módulo está en desarrollo. Próximamente podrá gestionar pacientes aquí.");
                 }
             }
@@ -171,9 +163,7 @@ namespace CapaPresentacion
             MostrarMensajeEnPanel("📤 Exportar Datos", "Funcionalidad de exportación en desarrollo.\nPodrá exportar reportes a PDF y Excel.");
         }
 
-        // ============================================================
-        // MENSAJE TEMPORAL PARA MÓDULOS EN DESARROLLO
-        // ============================================================
+        
         private void MostrarMensajeEnPanel(string titulo, string mensaje)
         {
             formularioActivo?.Close();
@@ -218,7 +208,7 @@ namespace CapaPresentacion
             panelMensaje.Controls.Add(lblTitulo);
             panelMensaje.Controls.Add(lblMensaje);
 
-            // Centrar vertical y horizontalmente
+            
             panelMensaje.Resize += (s, e) =>
             {
                 int totalHeight = lblIcono.Height + 20 + lblTitulo.Height + 10 + lblMensaje.Height;

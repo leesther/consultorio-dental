@@ -4,20 +4,14 @@ using System.Text.Json;
 
 namespace CapaNegocio
 {
-    /// <summary>
-    /// Servicio de envío de correos usando Resend Email API.
-    /// Usa una API Key maestra configurada en código para funcionar "out-of-the-box".
-    /// </summary>
+    
     public class N_Correos
     {
-        // ═══════════════════════════════════════════════════════════════
-        // CONFIGURACIÓN MAESTRA — Reemplaza con tu API Key de Resend
-        // https://resend.com/api-keys
-        // ═══════════════════════════════════════════════════════════════
+        
         private const string RESEND_API_KEY = "re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         private const string RESEND_API_URL = "https://api.resend.com/email";
         private const string REMITENTE_NOMBRE = "Clínica Dental Leon";
-        private const string REMITENTE_EMAIL = "comprobantes@tudominio.com"; // Cambia por tu dominio verificado en Resend
+        private const string REMITENTE_EMAIL = "comprobantes@tudominio.com";
         private const int MAX_REINTENTOS = 2;
 
         private static readonly HttpClient _httpClient = new HttpClient
@@ -25,9 +19,7 @@ namespace CapaNegocio
             Timeout = TimeSpan.FromSeconds(30)
         };
 
-        /// <summary>
-        /// Tipos de resultado del envío.
-        /// </summary>
+        
         public enum ResultadoEnvio
         {
             Exito,
@@ -36,9 +28,7 @@ namespace CapaNegocio
             ErrorDesconocido
         }
 
-        /// <summary>
-        /// Resultado del envío con mensaje descriptivo.
-        /// </summary>
+        
         public class RespuestaEnvio
         {
             public ResultadoEnvio Resultado { get; set; }
@@ -67,9 +57,7 @@ namespace CapaNegocio
                 destinatarioEmail, destinatarioNombre, asunto, mensajeHtml, pdfBytes, nombreArchivo, MAX_REINTENTOS);
         }
 
-        /// <summary>
-        /// Genera el HTML del correo para un comprobante.
-        /// </summary>
+        
         public static string GenerarHtmlComprobante(
             string nombrePaciente,
             string tipoComprobante,
@@ -96,18 +84,17 @@ namespace CapaNegocio
             sb.AppendLine(".footer{margin-top:25px;padding-top:20px;border-top:1px solid #e9ecef;font-size:12px;color:#868e96;text-align:center;line-height:1.6}");
             sb.AppendLine("</style></head><body><div class=\"container\">");
 
-            // Header
+            
             sb.AppendLine("<div class=\"header\">");
             sb.AppendLine($"<h1>🦷 {System.Net.WebUtility.HtmlEncode(REMITENTE_NOMBRE)}</h1>");
             sb.AppendLine("<p>Comprobante Electrónico</p>");
             sb.AppendLine("</div>");
 
-            // Body
+            
             sb.AppendLine("<div class=\"body\">");
             sb.AppendLine($"<p>Estimado(a) <strong>{System.Net.WebUtility.HtmlEncode(nombrePaciente)}</strong>,</p>");
             sb.AppendLine("<p>Adjunto encontrará su comprobante electrónico emitido por nuestra clínica.</p>");
 
-            // Datos
             sb.AppendLine("<div class=\"datos\">");
             sb.Append("<div class=\"row\"><div class=\"label\">Tipo</div><div class=\"value\">");
             sb.Append(System.Net.WebUtility.HtmlEncode(tipoComprobante));
@@ -133,7 +120,7 @@ namespace CapaNegocio
 
             sb.AppendLine("<p>Gracias por confiar en nosotros.</p>");
 
-            // Footer
+            
             sb.AppendLine("<div class=\"footer\">");
             sb.AppendLine("<p>Este es un mensaje automático. Por favor no responda a este correo.</p>");
             sb.AppendLine($"<p>&copy; {DateTime.Now.Year} Clínica Dental Leon — Todos los derechos reservados.</p>");
@@ -216,7 +203,7 @@ namespace CapaNegocio
                         };
                     }
 
-                    // Error de la API (límite de tasa, validación, etc.)
+                    
                     ultimoError = $"API error {response.StatusCode}: {responseBody}";
                 }
                 catch (TaskCanceledException)
