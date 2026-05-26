@@ -13,3 +13,4 @@ c:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Debug\net10.0\CapaDatos.
 c:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Debug\net10.0\refint\CapaDatos.dll
 c:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Debug\net10.0\CapaDatos.pdb
 c:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Debug\net10.0\ref\CapaDatos.dll
+C:\Users\USER\source\repos\ProyectoDental\CapaDatos\obj\Debug\net10.0\CapaDatos.sourcelink.json

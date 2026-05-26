@@ -31,8 +31,15 @@ namespace CapaPresentacion
                     Comprobantes = objNegocio.ListarComprobantes()
                 });
 
-                cmbPago.DataSource = datos.Pagos;
-                cmbPago.DisplayMember = "Descripcion";
+                // Crear lista formateada para mostrar más info en el ComboBox
+                var pagosFormateados = datos.Pagos.Select(p => new
+                {
+                    p.IdPago,
+                    Display = $"{p.PacienteNombre ?? "Sin nombre"} | S/ {p.Monto:F2} | {p.FechaPago:dd/MM/yyyy} | {p.Descripcion ?? "Sin descripción"}"
+                }).ToList();
+
+                cmbPago.DataSource = pagosFormateados;
+                cmbPago.DisplayMember = "Display";
                 cmbPago.ValueMember = "IdPago";
 
                 dgvComprobantes.AutoGenerateColumns = false;
@@ -62,6 +69,7 @@ namespace CapaPresentacion
             cmbPago.SelectedIndex = -1;
             btnVistaPrevia.Enabled = false;
             btnExportarPDF.Enabled = false;
+            btnEnviarCorreo.Enabled = false;
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
@@ -140,17 +148,17 @@ namespace CapaPresentacion
 
                 int idComprobante = Convert.ToInt32(cellValue);
 
-                // Usar ObtenerComprobantePorId en lugar de cargar toda la lista
+
                 E_Comprobante comprobante = objNegocio.ObtenerComprobantePorId(idComprobante);
 
-                // Usar ObtenerPagoPorId en lugar de cargar toda la lista de pagos
+
                 E_Pago pago = objFinanzas.ObtenerPagoPorId(comprobante.IdPago ?? 0);
 
-                // Generar HTML
+
                 N_Exportaciones export = new N_Exportaciones();
                 string html = export.GenerarComprobanteHTML(comprobante, pago);
 
-                // Guardar temporal y abrir en navegador
+
                 string tempFile = Path.Combine(Path.GetTempPath(), $"comprobante_{comprobante.NumeroComprobante}.html");
                 File.WriteAllText(tempFile, html, System.Text.Encoding.UTF8);
 
@@ -166,7 +174,7 @@ namespace CapaPresentacion
             }
         }
 
-        private void btnExportarPDF_Click(object sender, EventArgs e)
+        private async void btnExportarPDF_Click(object sender, EventArgs e)
         {
             try
             {
@@ -185,28 +193,31 @@ namespace CapaPresentacion
 
                 int idComprobante = Convert.ToInt32(cellValue);
 
-                // Usar ObtenerComprobantePorId en lugar de cargar toda la lista
                 E_Comprobante comprobante = objNegocio.ObtenerComprobantePorId(idComprobante);
-
-                // Usar ObtenerPagoPorId en lugar de cargar toda la lista de pagos
                 E_Pago pago = objFinanzas.ObtenerPagoPorId(comprobante.IdPago ?? 0);
 
                 N_Exportaciones export = new N_Exportaciones();
-                string html = export.GenerarComprobanteHTML(comprobante, pago);
 
-                // Abrir diálogo de guardado
                 SaveFileDialog sfd = new SaveFileDialog
                 {
-                    Filter = "HTML Files|*.html|PDF Files|*.pdf",
-                    FileName = $"{comprobante.TipoComprobante}_{comprobante.NumeroComprobante}.html"
+                    Filter = "PDF Files|*.pdf",
+                    FileName = $"{comprobante.TipoComprobante}_{comprobante.NumeroComprobante}.pdf"
                 };
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    // Guardar el archivo como HTML (el navegador permite imprimir a PDF con Ctrl+P)
-                    File.WriteAllText(sfd.FileName, html, System.Text.Encoding.UTF8);
+                    this.Cursor = Cursors.WaitCursor;
 
-                    // Abrir el archivo en el navegador para que el usuario pueda imprimir a PDF
+                    byte[] pdfBytes = await Task.Run(() =>
+                    {
+                        string html = export.GenerarComprobanteHTML(comprobante, pago);
+                        return export.ConvertirHtmlAPdf(html);
+                    });
+
+                    await File.WriteAllBytesAsync(sfd.FileName, pdfBytes);
+
+                    this.Cursor = Cursors.Default;
+
                     try
                     {
                         System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
@@ -217,16 +228,120 @@ namespace CapaPresentacion
                     }
                     catch
                     {
-                        // Si no se puede abrir, al menos ya está guardado
                     }
 
-                    MessageBox.Show("Archivo exportado con éxito. Use Ctrl+P en el navegador para guardar como PDF.",
+                    MessageBox.Show("PDF exportado con éxito.",
                         "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnEnviarCorreo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvComprobantes.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Seleccione un comprobante de la tabla.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                object? cellValue = dgvComprobantes.SelectedRows[0].Cells["colIdComprobante"].Value;
+                if (cellValue == null)
+                {
+                    MessageBox.Show("No se pudo obtener el ID del comprobante.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int idComprobante = Convert.ToInt32(cellValue);
+
+                this.Cursor = Cursors.WaitCursor;
+
+                // Obtener comprobante, pago y datos del paciente
+                E_Comprobante comprobante = objNegocio.ObtenerComprobantePorId(idComprobante);
+                E_Pago pago = objFinanzas.ObtenerPagoPorId(comprobante.IdPago ?? 0);
+                E_Paciente? paciente = objPacientes.ObtenerPacientePorId(pago.IdPaciente);
+
+                if (paciente == null || string.IsNullOrWhiteSpace(paciente.Correo))
+                {
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show("Este paciente no tiene un correo electrónico registrado.\n\n" +
+                        "Agregue un correo en la ficha del paciente para poder enviar comprobantes.",
+                        "Sin correo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Generar PDF del comprobante
+                N_Exportaciones export = new N_Exportaciones();
+                string html = export.GenerarComprobanteHTML(comprobante, pago);
+                byte[] pdfBytes = await Task.Run(() => export.ConvertirHtmlAPdf(html));
+
+                // Generar HTML del correo
+                string nombreCompleto = $"{paciente.Nombres} {paciente.Apellidos}";
+                string htmlCorreo = N_Correos.GenerarHtmlComprobante(
+                    nombrePaciente: nombreCompleto,
+                    tipoComprobante: comprobante.TipoComprobante,
+                    numeroComprobante: comprobante.NumeroComprobante,
+                    monto: $"S/ {comprobante.Total:N2}",
+                    fecha: comprobante.FechaEmision.ToString("dd/MM/yyyy HH:mm"),
+                    mensajeAdicional: "Puede imprimir este comprobante o presentarlo digitalmente en nuestra clínica."
+                );
+
+                string nombreArchivo = $"{comprobante.TipoComprobante}_{comprobante.NumeroComprobante}.pdf";
+
+                // Enviar correo
+                N_Correos servicioCorreo = new N_Correos();
+                N_Correos.RespuestaEnvio resultado = await servicioCorreo.EnviarComprobantePorCorreoAsync(
+                    destinatarioEmail: paciente.Correo,
+                    destinatarioNombre: nombreCompleto,
+                    asunto: $"Su comprobante {comprobante.NumeroComprobante} - Clínica Dental Leon",
+                    mensajeHtml: htmlCorreo,
+                    pdfBytes: pdfBytes,
+                    nombreArchivo: nombreArchivo
+                );
+
+                this.Cursor = Cursors.Default;
+
+                if (resultado.Resultado == N_Correos.ResultadoEnvio.Exito)
+                {
+                    MessageBox.Show($"✅ {resultado.Mensaje}",
+                        "Correo enviado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (resultado.Resultado == N_Correos.ResultadoEnvio.ErrorAutenticacion)
+                {
+                    MessageBox.Show($"⚠️ {resultado.Mensaje}",
+                        "Error de configuración", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    var respuesta = MessageBox.Show($"❌ {resultado.Mensaje}",
+                        "Error de envío", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        // Fallback: guardar PDF localmente
+                        SaveFileDialog sfd = new SaveFileDialog
+                        {
+                            Filter = "PDF Files|*.pdf",
+                            FileName = nombreArchivo
+                        };
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            await File.WriteAllBytesAsync(sfd.FileName, pdfBytes);
+                            MessageBox.Show("PDF guardado exitosamente.", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+                MessageBox.Show("Error al enviar correo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -266,6 +381,7 @@ namespace CapaPresentacion
             bool haySeleccion = dgvComprobantes.SelectedRows.Count > 0;
             btnVistaPrevia.Enabled = haySeleccion;
             btnExportarPDF.Enabled = haySeleccion;
+            btnEnviarCorreo.Enabled = haySeleccion;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

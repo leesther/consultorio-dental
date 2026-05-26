@@ -15,3 +15,4 @@ c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNego
 c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\refint\CapaNegocio.dll
 c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.pdb
 c:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\ref\CapaNegocio.dll
+C:\Users\USER\source\repos\ProyectoDental\CapaNegocio\obj\Debug\net10.0\CapaNegocio.sourcelink.json

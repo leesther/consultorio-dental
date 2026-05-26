@@ -14,19 +14,19 @@ namespace CapaDatos
                 using (NpgsqlConnection cn = new NpgsqlConnection(ConexionBD.CadenaConexion))
                 {
                     string query = @"INSERT INTO tblcomprobante
-                                        (idPago, numeroComprobante, tipoComprobante, monto, descripcion, pacienteNombre, fechaEmision)
+                                        (idpago, tipocomprobante, serie, numero, subtotal, igv, total)
                                      VALUES
-                                        (@idPago, @numeroComprobante, @tipoComprobante, @total, @estado, @razonSocial, @fechaEmision)
-                                     RETURNING idComprobante;";
+                                        (@idPago, @tipoComprobante, @serie, @numero, @subtotal, @igv, @total)
+                                     RETURNING idcomprobante;";
 
                     NpgsqlCommand cmd = new NpgsqlCommand(query, cn);
                     cmd.Parameters.Add("@idPago", NpgsqlDbType.Integer).Value = (object?)obj.IdPago ?? DBNull.Value;
-                    cmd.Parameters.Add("@numeroComprobante", NpgsqlDbType.Varchar).Value = obj.NumeroComprobante;
                     cmd.Parameters.Add("@tipoComprobante", NpgsqlDbType.Varchar).Value = obj.TipoComprobante;
+                    cmd.Parameters.Add("@serie", NpgsqlDbType.Varchar).Value = obj.Serie ?? (object)DBNull.Value;
+                    cmd.Parameters.Add("@numero", NpgsqlDbType.Varchar).Value = obj.Numero;
+                    cmd.Parameters.Add("@subtotal", NpgsqlDbType.Numeric).Value = obj.Subtotal;
+                    cmd.Parameters.Add("@igv", NpgsqlDbType.Numeric).Value = obj.IGV;
                     cmd.Parameters.Add("@total", NpgsqlDbType.Numeric).Value = obj.Total;
-                    cmd.Parameters.Add("@estado", NpgsqlDbType.Varchar).Value = obj.Estado;
-                    cmd.Parameters.Add("@razonSocial", NpgsqlDbType.Varchar).Value = obj.RazonSocial;
-                    cmd.Parameters.Add("@fechaEmision", NpgsqlDbType.Timestamp).Value = obj.FechaEmision;
 
                     cn.Open();
                     idGenerado = Convert.ToInt32(cmd.ExecuteScalar());
@@ -46,10 +46,10 @@ namespace CapaDatos
             {
                 using (NpgsqlConnection cn = new NpgsqlConnection(ConexionBD.CadenaConexion))
                 {
-                    string query = @"SELECT idcomprobante, idPago, numeroComprobante, tipoComprobante,
-                                            monto, descripcion, pacienteNombre, fechaEmision, anulado
+                    string query = @"SELECT idcomprobante, idpago, tipocomprobante, serie, numero,
+                                            subtotal, igv, total
                                      FROM tblcomprobante
-                                     ORDER BY fechaEmision DESC";
+                                     ORDER BY idcomprobante DESC";
 
                     NpgsqlCommand cmd = new NpgsqlCommand(query, cn);
                     cn.Open();
@@ -59,13 +59,13 @@ namespace CapaDatos
                         {
                             E_Comprobante obj = new E_Comprobante();
                             obj.IdComprobante = dr.GetInt32(dr.GetOrdinal("idcomprobante"));
-                            obj.IdPago = dr.IsDBNull(dr.GetOrdinal("idPago")) ? null : dr.GetInt32(dr.GetOrdinal("idPago"));
-                            obj.NumeroComprobante = dr.GetString(dr.GetOrdinal("numeroComprobante"));
-                            obj.TipoComprobante = dr.GetString(dr.GetOrdinal("tipoComprobante"));
-                            obj.Total = dr.GetDecimal(dr.GetOrdinal("monto"));
-                            obj.Estado = dr.GetBoolean(dr.GetOrdinal("anulado")) ? "Anulado" : "Emitido";
-                            obj.RazonSocial = dr.IsDBNull(dr.GetOrdinal("pacienteNombre")) ? "" : dr.GetString(dr.GetOrdinal("pacienteNombre"));
-                            obj.FechaEmision = dr.GetDateTime(dr.GetOrdinal("fechaEmision"));
+                            obj.IdPago = dr.IsDBNull(dr.GetOrdinal("idpago")) ? null : dr.GetInt32(dr.GetOrdinal("idpago"));
+                            obj.TipoComprobante = dr.GetString(dr.GetOrdinal("tipocomprobante"));
+                            obj.Serie = dr.IsDBNull(dr.GetOrdinal("serie")) ? null : dr.GetString(dr.GetOrdinal("serie"));
+                            obj.Numero = dr.GetString(dr.GetOrdinal("numero"));
+                            obj.Subtotal = dr.GetDecimal(dr.GetOrdinal("subtotal"));
+                            obj.IGV = dr.GetDecimal(dr.GetOrdinal("igv"));
+                            obj.Total = dr.GetDecimal(dr.GetOrdinal("total"));
                             lista.Add(obj);
                         }
                     }
@@ -85,13 +85,13 @@ namespace CapaDatos
             {
                 using (NpgsqlConnection cn = new NpgsqlConnection(ConexionBD.CadenaConexion))
                 {
-                    string query = @"SELECT idcomprobante, idPago, numeroComprobante, tipoComprobante,
-                                            monto, descripcion, pacienteNombre, fechaEmision, anulado
+                    string query = @"SELECT idcomprobante, idpago, tipocomprobante, serie, numero,
+                                            subtotal, igv, total
                                      FROM tblcomprobante
-                                     WHERE idcomprobante = @idcomprobante";
+                                     WHERE idcomprobante = @idComprobante";
 
                     NpgsqlCommand cmd = new NpgsqlCommand(query, cn);
-                    cmd.Parameters.Add("@idcomprobante", NpgsqlDbType.Integer).Value = idComprobante;
+                    cmd.Parameters.Add("@idComprobante", NpgsqlDbType.Integer).Value = idComprobante;
                     cn.Open();
                     using (NpgsqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -99,13 +99,13 @@ namespace CapaDatos
                         {
                             obj = new E_Comprobante();
                             obj.IdComprobante = dr.GetInt32(dr.GetOrdinal("idcomprobante"));
-                            obj.IdPago = dr.IsDBNull(dr.GetOrdinal("idPago")) ? null : dr.GetInt32(dr.GetOrdinal("idPago"));
-                            obj.NumeroComprobante = dr.GetString(dr.GetOrdinal("numeroComprobante"));
-                            obj.TipoComprobante = dr.GetString(dr.GetOrdinal("tipoComprobante"));
-                            obj.Total = dr.GetDecimal(dr.GetOrdinal("monto"));
-                            obj.Estado = dr.GetBoolean(dr.GetOrdinal("anulado")) ? "Anulado" : "Emitido";
-                            obj.RazonSocial = dr.IsDBNull(dr.GetOrdinal("pacienteNombre")) ? "" : dr.GetString(dr.GetOrdinal("pacienteNombre"));
-                            obj.FechaEmision = dr.GetDateTime(dr.GetOrdinal("fechaEmision"));
+                            obj.IdPago = dr.IsDBNull(dr.GetOrdinal("idpago")) ? null : dr.GetInt32(dr.GetOrdinal("idpago"));
+                            obj.TipoComprobante = dr.GetString(dr.GetOrdinal("tipocomprobante"));
+                            obj.Serie = dr.IsDBNull(dr.GetOrdinal("serie")) ? null : dr.GetString(dr.GetOrdinal("serie"));
+                            obj.Numero = dr.GetString(dr.GetOrdinal("numero"));
+                            obj.Subtotal = dr.GetDecimal(dr.GetOrdinal("subtotal"));
+                            obj.IGV = dr.GetDecimal(dr.GetOrdinal("igv"));
+                            obj.Total = dr.GetDecimal(dr.GetOrdinal("total"));
                         }
                     }
                 }
@@ -121,9 +121,9 @@ namespace CapaDatos
         {
             string prefijo = tipoComprobante switch
             {
-                "Boleta" => "B001-",
-                "Factura" => "F001-",
-                _ => "C001-"
+                "Boleta" => "B001",
+                "Factura" => "F001",
+                _ => "C001"
             };
 
             int consecutivo = 1;
@@ -131,12 +131,12 @@ namespace CapaDatos
             {
                 using (NpgsqlConnection cn = new NpgsqlConnection(ConexionBD.CadenaConexion))
                 {
-                    string query = @"SELECT COALESCE(MAX(CAST(SUBSTRING(numeroComprobante FROM '\d+$') AS INTEGER)), 0) + 1
+                    string query = @"SELECT COALESCE(MAX(CAST(numero AS INTEGER)), 0) + 1
                                      FROM tblcomprobante
-                                     WHERE numeroComprobante LIKE @prefijo";
+                                     WHERE serie = @serie";
 
                     NpgsqlCommand cmd = new NpgsqlCommand(query, cn);
-                    cmd.Parameters.Add("@prefijo", NpgsqlDbType.Varchar).Value = prefijo + "%";
+                    cmd.Parameters.Add("@serie", NpgsqlDbType.Varchar).Value = prefijo;
                     cn.Open();
                     var result = cmd.ExecuteScalar();
                     if (result != null && result != DBNull.Value)
@@ -147,7 +147,7 @@ namespace CapaDatos
             {
                 throw new Exception("Error al generar número de comprobante: " + ex.Message, ex);
             }
-            return prefijo + consecutivo.ToString("D8");
+            return prefijo + "-" + consecutivo.ToString("D8");
         }
 
         public void AnularComprobante(int idComprobante)
@@ -156,9 +156,9 @@ namespace CapaDatos
             {
                 using (NpgsqlConnection cn = new NpgsqlConnection(ConexionBD.CadenaConexion))
                 {
-                    string query = @"UPDATE tblcomprobante SET anulado = true WHERE idcomprobante = @idcomprobante";
+                    string query = @"DELETE FROM tblcomprobante WHERE idcomprobante = @idComprobante";
                     NpgsqlCommand cmd = new NpgsqlCommand(query, cn);
-                    cmd.Parameters.Add("@idcomprobante", NpgsqlDbType.Integer).Value = idComprobante;
+                    cmd.Parameters.Add("@idComprobante", NpgsqlDbType.Integer).Value = idComprobante;
                     cn.Open();
                     cmd.ExecuteNonQuery();
                 }
@@ -176,8 +176,8 @@ namespace CapaDatos
             {
                 using (NpgsqlConnection cn = new NpgsqlConnection(ConexionBD.CadenaConexion))
                 {
-                    string query = @"SELECT idcomprobante, numeroComprobante, tipoComprobante, monto,
-                                            pacienteNombre, fechaEmision, descripcion
+                    string query = @"SELECT idcomprobante, tipocomprobante, serie, numero,
+                                            subtotal, igv, total
                                      FROM tblcomprobante
                                      ORDER BY idcomprobante DESC
                                      LIMIT 1";
@@ -190,12 +190,12 @@ namespace CapaDatos
                         {
                             obj = new E_Comprobante();
                             obj.IdComprobante = dr.GetInt32(dr.GetOrdinal("idcomprobante"));
-                            obj.NumeroComprobante = dr.GetString(dr.GetOrdinal("numeroComprobante"));
-                            obj.TipoComprobante = dr.GetString(dr.GetOrdinal("tipoComprobante"));
-                            obj.Total = dr.GetDecimal(dr.GetOrdinal("monto"));
-                            obj.RazonSocial = dr.IsDBNull(dr.GetOrdinal("pacienteNombre")) ? "" : dr.GetString(dr.GetOrdinal("pacienteNombre"));
-                            obj.FechaEmision = dr.GetDateTime(dr.GetOrdinal("fechaEmision"));
-                            obj.Estado = "Emitido";
+                            obj.TipoComprobante = dr.GetString(dr.GetOrdinal("tipocomprobante"));
+                            obj.Serie = dr.IsDBNull(dr.GetOrdinal("serie")) ? null : dr.GetString(dr.GetOrdinal("serie"));
+                            obj.Numero = dr.GetString(dr.GetOrdinal("numero"));
+                            obj.Subtotal = dr.GetDecimal(dr.GetOrdinal("subtotal"));
+                            obj.IGV = dr.GetDecimal(dr.GetOrdinal("igv"));
+                            obj.Total = dr.GetDecimal(dr.GetOrdinal("total"));
                         }
                     }
                 }

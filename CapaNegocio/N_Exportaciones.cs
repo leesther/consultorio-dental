@@ -1,5 +1,7 @@
 using CapaEntidades;
 using System.Text;
+using ClosedXML.Excel;
+using DinkToPdf;
 
 namespace CapaNegocio
 {
@@ -30,6 +32,55 @@ namespace CapaNegocio
         }
 
         /// <summary>
+        /// Exporta una lista de pagos a un archivo Excel nativo (.xlsx).
+        /// </summary>
+        public string ExportarPagosExcel(List<E_Pago> pagos, string rutaArchivo)
+        {
+            try
+            {
+                using var workbook = new XLWorkbook();
+                var ws = workbook.Worksheets.Add("Pagos");
+
+                // Encabezados
+                ws.Cell(1, 1).Value = "ID Pago";
+                ws.Cell(1, 2).Value = "Paciente";
+                ws.Cell(1, 3).Value = "Monto";
+                ws.Cell(1, 4).Value = "Método de Pago";
+                ws.Cell(1, 5).Value = "Descripción";
+                ws.Cell(1, 6).Value = "Fecha";
+
+                // Estilo de encabezados
+                var headerRange = ws.Range(1, 1, 1, 6);
+                headerRange.Style.Font.Bold = true;
+                headerRange.Style.Fill.BackgroundColor = XLColor.FromArgb(0x333333);
+                headerRange.Style.Font.FontColor = XLColor.White;
+
+                // Datos
+                for (int i = 0; i < pagos.Count; i++)
+                {
+                    var pago = pagos[i];
+                    int row = i + 2;
+                    ws.Cell(row, 1).Value = pago.IdPago;
+                    ws.Cell(row, 2).Value = pago.PacienteNombre ?? "";
+                    ws.Cell(row, 3).Value = pago.Monto;
+                    ws.Cell(row, 4).Value = pago.MetodoPago ?? "";
+                    ws.Cell(row, 5).Value = pago.Descripcion ?? "";
+                    ws.Cell(row, 6).Value = pago.FechaPago.ToString("yyyy-MM-dd HH:mm:ss");
+                }
+
+                // Auto-ajustar columnas
+                ws.Columns().AdjustToContents();
+
+                workbook.SaveAs(rutaArchivo);
+                return rutaArchivo;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al exportar a Excel: " + ex.Message, ex);
+            }
+        }
+
+        /// <summary>
         /// Exporta reporte de ventas a CSV.
         /// </summary>
         public string ExportarVentasCSV(List<E_ReporteVentas> ventas, string rutaArchivo)
@@ -54,6 +105,47 @@ namespace CapaNegocio
         }
 
         /// <summary>
+        /// Exporta reporte de ventas a Excel nativo (.xlsx).
+        /// </summary>
+        public string ExportarVentasExcel(List<E_ReporteVentas> ventas, string rutaArchivo, DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                using var workbook = new XLWorkbook();
+                var ws = workbook.Worksheets.Add("Ventas");
+
+                // Encabezados
+                ws.Cell(1, 1).Value = "Período";
+                ws.Cell(1, 2).Value = "Total Transacciones";
+                ws.Cell(1, 3).Value = "Total Ventas";
+
+                var headerRange = ws.Range(1, 1, 1, 3);
+                headerRange.Style.Font.Bold = true;
+                headerRange.Style.Fill.BackgroundColor = XLColor.FromArgb(0x333333);
+                headerRange.Style.Font.FontColor = XLColor.White;
+
+                for (int i = 0; i < ventas.Count; i++)
+                {
+                    var v = ventas[i];
+                    int row = i + 2;
+                    ws.Cell(row, 1).Value = v.Periodo;
+                    ws.Cell(row, 2).Value = v.TotalTransacciones;
+                    ws.Cell(row, 3).Value = v.TotalVentas;
+                }
+
+                ws.Columns().AdjustToContents();
+                ws.Range(2, 3, ventas.Count + 1, 3).Style.NumberFormat.Format = "S/ #,##0.00";
+
+                workbook.SaveAs(rutaArchivo);
+                return rutaArchivo;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al exportar ventas a Excel: " + ex.Message, ex);
+            }
+        }
+
+        /// <summary>
         /// Exporta comprobantes a CSV.
         /// </summary>
         public string ExportarComprobantesCSV(List<E_Comprobante> comprobantes, string rutaArchivo)
@@ -74,6 +166,95 @@ namespace CapaNegocio
             catch (Exception ex)
             {
                 throw new Exception("Error al exportar comprobantes a CSV: " + ex.Message, ex);
+            }
+        }
+
+        /// <summary>
+        /// Exporta comprobantes a Excel nativo (.xlsx).
+        /// </summary>
+        public string ExportarComprobantesExcel(List<E_Comprobante> comprobantes, string rutaArchivo)
+        {
+            try
+            {
+                using var workbook = new XLWorkbook();
+                var ws = workbook.Worksheets.Add("Comprobantes");
+
+                ws.Cell(1, 1).Value = "ID";
+                ws.Cell(1, 2).Value = "Tipo";
+                ws.Cell(1, 3).Value = "Número";
+                ws.Cell(1, 4).Value = "Fecha";
+                ws.Cell(1, 5).Value = "Razón Social";
+                ws.Cell(1, 6).Value = "RUC";
+                ws.Cell(1, 7).Value = "Subtotal";
+                ws.Cell(1, 8).Value = "IGV";
+                ws.Cell(1, 9).Value = "Total";
+                ws.Cell(1, 10).Value = "Estado";
+
+                var headerRange = ws.Range(1, 1, 1, 10);
+                headerRange.Style.Font.Bold = true;
+                headerRange.Style.Fill.BackgroundColor = XLColor.FromArgb(0x333333);
+                headerRange.Style.Font.FontColor = XLColor.White;
+
+                for (int i = 0; i < comprobantes.Count; i++)
+                {
+                    var c = comprobantes[i];
+                    int row = i + 2;
+                    ws.Cell(row, 1).Value = c.IdComprobante;
+                    ws.Cell(row, 2).Value = c.TipoComprobante ?? "";
+                    ws.Cell(row, 3).Value = c.NumeroComprobante ?? "";
+                    ws.Cell(row, 4).Value = c.FechaEmision.ToString("yyyy-MM-dd");
+                    ws.Cell(row, 5).Value = c.RazonSocial ?? "";
+                    ws.Cell(row, 6).Value = c.RUC ?? "";
+                    ws.Cell(row, 7).Value = c.Subtotal;
+                    ws.Cell(row, 8).Value = c.IGV;
+                    ws.Cell(row, 9).Value = c.Total;
+                    ws.Cell(row, 10).Value = c.Estado ?? "";
+                }
+
+                ws.Columns().AdjustToContents();
+                ws.Range(2, 7, comprobantes.Count + 1, 9).Style.NumberFormat.Format = "S/ #,##0.00";
+
+                workbook.SaveAs(rutaArchivo);
+                return rutaArchivo;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al exportar comprobantes a Excel: " + ex.Message, ex);
+            }
+        }
+
+        /// <summary>
+        /// Convierte contenido HTML a PDF usando DinkToPdf (wkhtmltopdf).
+        /// </summary>
+        public byte[] ConvertirHtmlAPdf(string html)
+        {
+            try
+            {
+                var converter = new SynchronizedConverter(new PdfTools());
+                var doc = new HtmlToPdfDocument()
+                {
+                    GlobalSettings =
+                    {
+                        ColorMode = ColorMode.Color,
+                        Orientation = Orientation.Portrait,
+                        PaperSize = PaperKind.A4,
+                        Margins = new MarginSettings { Top = 10, Bottom = 10, Left = 10, Right = 10 }
+                    },
+                    Objects =
+                    {
+                        new ObjectSettings
+                        {
+                            HtmlContent = html,
+                            WebSettings = { DefaultEncoding = "utf-8" }
+                        }
+                    }
+                };
+
+                return converter.Convert(doc);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al convertir HTML a PDF: " + ex.Message, ex);
             }
         }
 
@@ -248,14 +429,5 @@ namespace CapaNegocio
             return System.Net.WebUtility.HtmlEncode(input ?? string.Empty);
         }
 
-        /// <summary>
-        /// Exporta datos genéricos a Excel usando formato CSV (compatible con Excel).
-        /// Guarda como .csv que Excel puede abrir nativamente.
-        /// </summary>
-        public string ExportarExcelDesdeCSV(string csvPath)
-        {
-            // Simplemente retorna el path - CSV es compatible con Excel
-            return csvPath;
-        }
     }
 }

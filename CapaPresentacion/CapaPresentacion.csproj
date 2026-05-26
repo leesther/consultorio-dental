@@ -13,8 +13,4 @@
     <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DinkToPdf" Version="1.0.8" />
-  </ItemGroup>
-
 </Project>

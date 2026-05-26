@@ -283,8 +283,8 @@ namespace CapaDatos
             {
                 using (NpgsqlConnection cn = new NpgsqlConnection(ConexionBD.CadenaConexion))
                 {
-                    string query = @"DELETE FROM tblComprobante WHERE idPago = @idPago;
-                                     DELETE FROM tblPago WHERE idPago = @idPago;";
+                     string query = @"DELETE FROM tblcomprobante WHERE idPago = @idPago;
+                                      DELETE FROM tblPago WHERE idPago = @idPago;";
                     NpgsqlCommand cmd = new NpgsqlCommand(query, cn);
                     cmd.Parameters.Add("@idPago", NpgsqlDbType.Integer).Value = idPago;
                     cn.Open();

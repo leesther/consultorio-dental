@@ -9,3 +9,4 @@ c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEn
 c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\refint\CapaEntidades.dll
 c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEntidades.pdb
 c:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\ref\CapaEntidades.dll
+C:\Users\USER\source\repos\ProyectoDental\CapaEntidades\obj\Debug\net10.0\CapaEntidades.sourcelink.json

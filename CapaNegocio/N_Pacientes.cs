@@ -21,6 +21,8 @@ namespace CapaNegocio
             _datos.ActualizarPaciente(obj);
         }
 
+        public E_Paciente? ObtenerPacientePorId(int idPaciente) => _datos.ObtenerPacientePorId(idPaciente);
+
         public void EliminarPaciente(int idPaciente) => _datos.EliminarPaciente(idPaciente);
 
         private void ValidarPaciente(E_Paciente obj, int opcion = 0)
