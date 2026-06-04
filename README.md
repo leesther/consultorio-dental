@@ -36,6 +36,8 @@ Base de Datos: PostgreSQL alojado en Supabase.
 
 Control de Versiones: Git y GitHub.
 
+## 📂 Estructura del Proyecto
+```text
 DENTAL-LEON/
 ├── backend-api/                    # Lógica de negocio y APIs REST
 ├── frontend-portal-paciente/       # Interfaz orientada al paciente
@@ -44,6 +46,8 @@ DENTAL-LEON/
 ├── docs/                           # Documentación técnica
 ├── figma/                          # Prototipos y activos de diseño
 └── resources/                      # Archivos de soporte
+```
+
 
 👥 Equipo de Desarrollo
 Esther: Gestión de usuarios, historial clínico, odontograma y supervisión técnica.
