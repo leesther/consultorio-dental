@@ -8,8 +8,8 @@ El proyecto sigue una arquitectura **Cliente-Servidor basada en APIs REST**.
 ```mermaid
 graph TD
     subgraph Frontend
-        P[Portal del Paciente]
-        A[Sistema Administrativo]
+        P[Portal del Paciente - Web]
+        A[Sistema Administrativo - JavaFX]
     end
     
     subgraph Backend
