@@ -1,4 +1,4 @@
-# Consultorio Dental
+# 🦷 Clínica Dental León
 
 Sistema web de gestión para consultorio dental, diseñado bajo una arquitectura modular para escalar la gestión de pacientes, citas y tratamientos.
 
@@ -25,7 +25,7 @@ graph TD
     API --> DB
 
 ```
-🛠️ Tecnologías
+## 🛠️ Tecnologías
 Backend: Java 21, Spring Boot, Spring Security (JWT), Spring Data JPA.
 
 Frontend: HTML5, CSS3, JavaScript, Bootstrap.
@@ -49,9 +49,13 @@ DENTAL-LEON/
 ```
 
 
-👥 Equipo de Desarrollo
-Esther: Gestión de usuarios, historial clínico, odontograma y supervisión técnica.
+## 👥 Equipo de Desarrollo
 
-Josue: Backend Administrativo, Infraestructura (Supabase/Spring Boot) y Seguridad JWT.
+| Integrante | Rol Principal | Especialidad / Responsabilidades |
+| :--- | :--- | :--- |
+| **Esther** | 🛠️ Liderazgo Técnico | Gestión de usuarios, Historial Clínico, Odontograma. |
+| **Josue** | ⚙️ Backend & Infra | Seguridad JWT, Spring Boot, Supabase y Finanzas. |
+| **Neyra** | 🎨 UI/UX & Frontend | Diseño Figma, Portal Paciente y Dashboard Admin. |
 
-Neyra: Diseño UI/UX y desarrollo Frontend (Portal Paciente y Administrativo).
+---
+
