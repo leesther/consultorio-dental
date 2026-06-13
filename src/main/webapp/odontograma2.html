@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dental Leon - Odontograma Clínico</title>
+  
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/odontograma.css">
+</head>
+<body class="min-h-screen bg-canvas text-ink">
+  <div class="app-shell min-h-screen">
+    
+    <aside class="side-nav">
+      <div class="px-6 pb-5 pt-6">
+        <div class="flex items-center gap-3">
+          <div class="grid h-11 w-11 place-items-center rounded-lg bg-navy text-white">
+            <span class="material-symbols-outlined">dentistry</span>
+          </div>
+          <div>
+            <h1 class="text-xl font-extrabold text-navy">Dental Leon</h1>
+            <p class="text-xs font-semibold uppercase text-muted">Historia clínica</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="flex-1 space-y-1 px-3">
+        <a class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-semibold text-muted hover:bg-canvas" href="dashboard.jsp">
+          <span class="material-symbols-outlined">dashboard</span> Dashboard
+        </a>
+        <a class="flex items-center gap-3 rounded-lg bg-softBlue px-3 py-3 text-sm font-bold text-navy" href="odontograma.jsp">
+          <span class="material-symbols-outlined">clinical_notes</span> Odontograma
+        </a>
+        <a class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-semibold text-muted hover:bg-canvas" href="historial.jsp">
+          <span class="material-symbols-outlined">history</span> Historial clínico
+        </a>
+        <a class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-semibold text-muted hover:bg-canvas" href="pagos.jsp">
+          <span class="material-symbols-outlined">payments</span> Pagos
+        </a>
+      </nav>
+
+      <div class="border-t border-line p-4">
+        <button class="flex w-full items-center justify-between rounded-lg bg-navy px-4 py-3 text-sm font-bold text-white [class~='hover:bg-[#143a5d]']">
+          <span class="flex items-center gap-2">
+            <span class="material-symbols-outlined [class~='text-[20px]']">calendar_add_on</span> 
+            Agendar Cita
+          </span>
+          <span class="material-symbols-outlined [class~='text-[18px]']">arrow_forward</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="sticky top-0 z-20 border-b border-line [class~='bg-panel/95'] px-5 py-4 backdrop-blur">
+        <div class="mx-auto flex [class~='max-w-[1440px]'] flex-wrap items-center justify-between gap-4">
+          <div class="flex min-w-0 items-center gap-4">
+            <div class="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-mint text-base font-extrabold text-teal ring-2 ring-white">LM</div>
+            <div class="min-w-0">
+              <h2 class="truncate text-2xl font-extrabold text-navy">Lucía Méndez García</h2>
+              <p class="text-sm font-medium text-muted">ID 4829-X · 34 años · Última visita: 12/10/2023 · Alergias: ninguna registrada</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="grid h-10 w-10 place-items-center rounded-lg border border-line bg-panel text-muted hover:bg-canvas" aria-label="Notificaciones">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="grid h-10 w-10 place-items-center rounded-lg border border-line bg-panel text-muted hover:bg-canvas" aria-label="Configuración">
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="mx-auto [class~='max-w-[1440px]'] space-y-6 px-5 py-6">
+        <div class="grid gap-4 md:grid-cols-4">
+          <article class="rounded-lg border border-line bg-panel p-4 shadow-soft">
+            <p class="text-xs font-bold uppercase text-muted">Diagnósticos activos</p>
+            <p class="mt-2 text-3xl font-extrabold text-navy" id="active-count">4</p>
+          </article>
+          <article class="rounded-lg border border-line bg-panel p-4 shadow-soft">
+            <p class="text-xs font-bold uppercase text-muted">Prioridad</p>
+            <p class="mt-2 text-lg font-extrabold text-danger">Endodoncia 16</p>
+          </article>
+          <article class="rounded-lg border border-line bg-panel p-4 shadow-soft">
+            <p class="text-xs font-bold uppercase text-muted">Presupuesto</p>
+            <p class="mt-2 text-3xl font-extrabold text-navy">S/ 980</p>
+          </article>
+          <article class="rounded-lg border border-line bg-panel p-4 shadow-soft">
+            <p class="text-xs font-bold uppercase text-muted">Próxima cita</p>
+            <p class="mt-2 text-lg font-extrabold text-teal">18/10 · 10:30</p>
+          </article>
+        </div>
+
+        <section class="rounded-xl border border-line bg-panel shadow-soft">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-4">
+            <div>
+              <h3 class="text-xl font-extrabold text-navy">Odontograma clínico</h3>
+              <p class="text-sm text-muted">Vista de solo lectura del odontograma registrado.</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button class="inline-flex items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm font-bold text-ink hover:bg-canvas">
+                <span class="material-symbols-outlined [class~='text-[18px]']">print</span> Imprimir
+              </button>
+              <button class="inline-flex items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm font-bold text-ink hover:bg-canvas">
+                <span class="material-symbols-outlined [class~='text-[18px]']">ios_share</span> Exportar
+              </button>
+            </div>
+          </div>
+
+          <div class="chart-workspace">
+            <aside class="space-y-4">
+              <div class="rounded-lg bg-canvas p-4">
+                <p class="mb-3 text-xs font-extrabold uppercase text-muted">Leyenda</p>
+                <div class="grid gap-2" id="condition-tools">
+                  <div class="flex items-center gap-3 rounded-lg bg-panel px-3 py-2 text-left text-sm font-bold text-ink ring-1 ring-line">
+                    <span class="h-3 w-3 rounded-sm bg-danger"></span> Caries
+                  </div>
+                  <div class="flex items-center gap-3 rounded-lg bg-panel px-3 py-2 text-left text-sm font-bold text-ink ring-1 ring-line">
+                    <span class="h-3 w-3 rounded-sm bg-teal"></span> Obturación
+                  </div>
+                  <div class="flex items-center gap-3 rounded-lg bg-panel px-3 py-2 text-left text-sm font-bold text-ink ring-1 ring-line">
+                    <span class="h-3 w-3 rounded-sm bg-navy"></span> Corona
+                  </div>
+                  <div class="flex items-center gap-3 rounded-lg bg-panel px-3 py-2 text-left text-sm font-bold text-ink ring-1 ring-line">
+                    <span class="h-3 w-3 rounded-sm bg-slate-300"></span> Ausente
+                  </div>
+                </div>
+              </div>
+
+              <div class="rounded-lg bg-canvas p-4">
+                <p class="mb-3 text-xs font-extrabold uppercase text-muted">Resumen</p>
+                <dl class="space-y-2 text-sm">
+                  <div class="flex justify-between"><dt class="text-muted">Caries</dt><dd class="font-bold" id="count-caries">1</dd></div>
+                  <div class="flex justify-between"><dt class="text-muted">Obturaciones</dt><dd class="font-bold" id="count-filling">1</dd></div>
+                  <div class="flex justify-between"><dt class="text-muted">Coronas</dt><dd class="font-bold" id="count-crown">1</dd></div>
+                  <div class="flex justify-between"><dt class="text-muted">Ausentes</dt><dd class="font-bold" id="count-missing">1</dd></div>
+                </dl>
+              </div>
+            </aside>
+
+            <div class="overflow-x-auto rounded-lg border border-line bg-white p-5">
+              <div class="[class~='min-w-[660px]'] space-y-9">
+                <div>
+                  <p class="mb-4 text-center text-xs font-extrabold uppercase text-muted">Arco superior</p>
+                  <div class="flex items-center justify-center gap-4">
+                    <div class="flex gap-2" id="upper-left"></div>
+                    <div class="h-28 w-px bg-line"></div>
+                    <div class="flex gap-2" id="upper-right"></div>
+                  </div>
+                </div>
+
+                <div class="h-px bg-line"></div>
+
+                <div>
+                  <div class="flex items-center justify-center gap-4">
+                    <div class="flex gap-2" id="lower-left"></div>
+                    <div class="h-28 w-px bg-line"></div>
+                    <div class="flex gap-2" id="lower-right"></div>
+                  </div>
+                  <p class="mt-4 text-center text-xs font-extrabold uppercase text-muted">Arco inferior</p>
+                </div>
+              </div>
+            </div>
+
+            <aside class="details-panel space-y-4">
+              <div class="rounded-lg border border-line p-4">
+                <p class="text-xs font-extrabold uppercase text-muted">Hallazgo principal</p>
+                <p class="mt-2 text-lg font-extrabold text-navy">Pieza 16 · Oclusal</p>
+                <p class="mt-1 text-sm text-muted">Caries activa registrada para evaluación.</p>
+              </div>
+
+              <div class="rounded-lg border border-line p-4">
+                <div class="mb-3 flex items-center justify-between">
+                  <p class="text-xs font-extrabold uppercase text-muted">Plan sugerido</p>
+                  <span class="rounded-full [class~='bg-[#fff3d7]'] px-2 py-1 text-xs font-bold [class~='text-[#875400]']">3 items</span>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div class="rounded-lg bg-canvas p-3">
+                    <p class="font-bold text-danger">Endodoncia pieza 16</p>
+                    <p class="text-muted">Prioridad alta · 70 min</p>
+                  </div>
+                  <div class="rounded-lg bg-canvas p-3">
+                    <p class="font-bold text-navy">Profilaxis completa</p>
+                    <p class="text-muted">Pendiente · 40 min</p>
+                  </div>
+                  <div class="rounded-lg bg-canvas p-3">
+                    <p class="font-bold text-teal">Control radiográfico</p>
+                    <p class="text-muted">Seguimiento · 20 min</p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <div class="grid gap-6 [class~='lg:grid-cols-[1fr_360px]']">
+          <section class="rounded-xl border border-line bg-panel p-5 shadow-soft">
+            <div class="mb-4 flex items-center justify-between border-b border-line pb-3">
+              <h3 class="text-lg font-extrabold text-navy">Observaciones generales</h3>
+              <button class="inline-flex items-center gap-1 text-sm font-bold text-teal hover:underline">
+                <span class="material-symbols-outlined [class~='text-[18px]']">history</span> Historial
+              </button>
+            </div>
+            <textarea class="h-32 w-full resize-none rounded-lg border-line bg-canvas p-4 text-sm focus:border-teal focus:ring-teal" placeholder="Ingrese notas clínicas relevantes...">Paciente refiere sensibilidad a frío en sector superior izquierdo. Se recomienda radiografía periapical de pieza 16 antes de iniciar tratamiento.</textarea>
+          </section>
+
+          <section class="rounded-xl border border-line bg-panel p-5 shadow-soft">
+            <h3 class="mb-4 border-b border-line pb-3 text-lg font-extrabold text-navy">Actividad reciente</h3>
+            <ol class="space-y-4 text-sm">
+              <li class="flex gap-3">
+                <span class="mt-1 h-2.5 w-2.5 rounded-full bg-danger"></span>
+                <div><p class="font-bold">Caries registrada en 16</p><p class="text-muted">Hoy · Dr. Ramos</p></div>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 h-2.5 w-2.5 rounded-full bg-teal"></span>
+                <div><p class="font-bold">Obturación distal en 14</p><p class="text-muted">12/10/2023</p></div>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 h-2.5 w-2.5 rounded-full bg-navy"></span>
+                <div><p class="font-bold">Corona en 22</p><p class="text-muted">04/09/2023</p></div>
+              </li>
+            </ol>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="tooth-template">
+    <div class="tooth-card" role="img">
+      <span class="tooth-number"></span>
+      <span class="tooth-shell">
+        <svg class="root-svg" viewBox="0 0 44 44" aria-hidden="true">
+          <path class="tooth-root" d="M12 43 C10 27 13 11 22 5 C31 11 34 27 32 43 Z" fill="#eef3f8" stroke="#b8c4d1" stroke-width="0.8"></path>
+        </svg>
+        <svg class="crown-svg" viewBox="0 0 44 44" aria-hidden="true">
+          <path class="tooth-surface" data-surface="Vestibular" d="M2 2 H42 L34 11 H10 Z" fill="#ffffff" stroke="#0b2a45" stroke-width="0.8"></path>
+          <path class="tooth-surface" data-surface="Distal" d="M42 2 V42 L34 33 V11 Z" fill="#ffffff" stroke="#0b2a45" stroke-width="0.8"></path>
+          <path class="tooth-surface" data-surface="Lingual" d="M2 42 H42 L34 33 H10 Z" fill="#ffffff" stroke="#0b2a45" stroke-width="0.8"></path>
+          <path class="tooth-surface" data-surface="Mesial" d="M2 2 V42 L10 33 V11 Z" fill="#ffffff" stroke="#0b2a45" stroke-width="0.8"></path>
+          <rect class="tooth-surface" data-surface="Oclusal" x="10" y="11" width="24" height="22" rx="3" fill="#ffffff" stroke="#0b2a45" stroke-width="0.8"></rect>
+        </svg>
+      </span>
+    </div>
+  </template>
+
+  <script>
+    const quadrants = {
+      "upper-left": [18, 17, 16, 15, 14, 13, 12, 11],
+      "upper-right": [21, 22, 23, 24, 25, 26, 27, 28],
+      "lower-left": [48, 47, 46, 45, 44, 43, 42, 41],
+      "lower-right": [31, 32, 33, 34, 35, 36, 37, 38]
+    };
+
+    const initialStates = {
+      "16-Oclusal": "caries",
+      "14-Distal": "filling",
+      "22-all": "crown",
+      "46-all": "missing"
+    };
+
+    function setSurfaceState(surface, state) {
+      surface.classList.remove("status-caries", "status-filling", "status-crown", "status-missing", "status-selected");
+      if (state && state !== "clear") surface.classList.add(`status-${state}`);
+      surface.dataset.state = state === "clear"  "" : state;
+    }
+
+    function renderTooth(number, isLower) {
+      const template = document.getElementById("tooth-template");
+      const node = template.content.cloneNode(true);
+      const card = node.querySelector(".tooth-card");
+      const numberEl = node.querySelector(".tooth-number");
+      const root = node.querySelector(".root-svg");
+      const crown = node.querySelector(".crown-svg");
+
+      numberEl.textContent = number;
+      card.setAttribute("aria-label", `Pieza dental ${number}`);
+      card.dataset.tooth = number;
+
+      if (isLower) {
+        crown.style.order = "-1";
+        root.style.transform = "scaleY(-1)";
+      }
+
+      node.querySelectorAll(".tooth-surface").forEach((surface) => {
+        const key = `${number}-${surface.dataset.surface}`;
+        const allKey = `${number}-all`;
+        setSurfaceState(surface, initialStates[allKey] || initialStates[key] || "");
+      });
+
+      return node;
+    }
+
+    function renderChart() {
+      Object.entries(quadrants).forEach(([id, teeth]) => {
+        const target = document.getElementById(id);
+        const isLower = id.includes("lower");
+        teeth.forEach((tooth) => target.appendChild(renderTooth(tooth, isLower)));
+      });
+      updateCounts();
+    }
+
+    function updateCounts() {
+      const counts = { caries: 0, filling: 0, crown: 0, missing: 0 };
+      document.querySelectorAll(".tooth-surface").forEach((surface) => {
+        if (counts[surface.dataset.state] !== undefined) counts[surface.dataset.state] += 1;
+      });
+      Object.entries(counts).forEach(([key, value]) => {
+        document.getElementById(`count-${key}`).textContent = value;
+      });
+      document.getElementById("active-count").textContent = Object.values(counts).reduce((total, value) => total + value, 0);
+    }
+
+    renderChart();
+  </script>
+</body>
+</html>

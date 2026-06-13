@@ -1,0 +1,319 @@
+/* ==========================================================================
+   1. Reseteo de Estilos Base (Preflight Core)
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6, p, ol, ul, dl, dt, dd, figure, textarea, label {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. Variables de Diseño (Design Tokens)
+   ========================================================================== */
+:root {
+    --ink: #102033;
+    --muted: #617084;
+    --line: #d8e0ea;
+    --canvas: #f6f8fb;
+    --panel: #ffffff;
+    --navy: #0b2a45;
+    --teal: #007b8f;
+    --mint: #d9f2ea;
+    --amber: #f3b344;
+    --danger: #c4382d;
+    --soft-blue: #dbeafe;
+    --shadow-soft: 0 14px 40px rgba(16, 32, 51, 0.08);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: Inter, Arial, sans-serif;
+}
+
+/* ==========================================================================
+   3. Elementos del App Shell & Layout
+   ========================================================================== */
+.side-nav {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 30;
+    display: flex;
+    width: 264px;
+    height: 100vh;
+    flex-direction: column;
+    border-right: 1px solid var(--line);
+    background: var(--panel);
+}
+
+.main-panel {
+    min-height: 100vh;
+    width: calc(100% - 264px);
+    margin-left: 264px;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   4. Componentes Específicos del Formulario de Reserva
+   ========================================================================== */
+.label-form {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+.class-mb-important {
+    margin-bottom: 12px;
+}
+
+.input-form {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--ink);
+    background-color: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.select-form {
+    height: 42px;
+    cursor: pointer;
+}
+
+.input-form:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(0, 123, 143, 0.16);
+    background-color: var(--panel);
+}
+
+/* Selector de Horarios (Radio Cards Dinámicas) */
+.radio-card {
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio-content {
+    padding: 14px;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    transition: all 150ms ease;
+}
+
+.radio-card:hover .radio-content {
+    border-color: var(--muted);
+    background: #edf1f6;
+}
+
+.radio-content .time {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+.radio-content .date {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+/* Estado de Selección del Horario */
+.radio-card input[type="radio"]:checked + .radio-content {
+    background: var(--soft-blue);
+    border-color: var(--teal);
+    box-shadow: 0 0 0 1px var(--teal);
+}
+
+/* Botones de Estilo Corporativo */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 150ms ease;
+    border: 0;
+}
+
+.btn-primary {
+    background: var(--teal);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #006677;
+}
+
+.btn-secondary {
+    background: #e8edf3;
+    color: var(--muted);
+}
+
+.btn-secondary:hover {
+    background: #d8e0ea;
+}
+
+/* Alerta de Urgencia Lateral */
+.box-emergency-border {
+    border-left: 4px solid var(--danger) !important;
+}
+
+/* ==========================================================================
+   5. Clases Utilitarias (Layout, Espaciados e Inyecciones Básicas)
+   ========================================================================== */
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+.top-0 { top: 0; }
+.left-0 { left: 0; }
+.inset-y-0 { top: 0; bottom: 0; }
+.z-20 { z-index: 20; }
+.z-30 { z-index: 30; }
+
+.flex { display: flex; }
+.grid { display: grid; }
+.flex-1 { flex: 1 1 0%; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.shrink-0 { flex-shrink: 0; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.place-items-center { place-items: center; }
+
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-6 { gap: 24px; }
+
+.space-y-1 > * + * { margin-top: 4px; }
+.space-y-4 > * + * { margin-top: 16px; }
+.space-y-6 > * + * { margin-top: 24px; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mb-4 { margin-bottom: 16px; }
+
+.p-4 { padding: 16px; }
+.p-5 { padding: 20px; }
+.px-3 { padding-left: 12px; padding-right: 12px; }
+.px-5 { padding-left: 20px; padding-right: 20px; }
+.px-6 { padding-left: 24px; padding-right: 24px; }
+.py-3 { padding-top: 12px; padding-bottom: 12px; }
+.py-4 { padding-top: 16px; padding-bottom: 16px; }
+.py-6 { padding-top: 24px; padding-bottom: 24px; }
+.pt-6 { padding-top: 24px; }
+.pb-5 { padding-bottom: 20px; }
+
+.h-screen { height: 100vh; }
+.min-h-screen { min-height: 100vh; }
+.h-10 { height: 40px; }
+.h-11 { height: 44px; }
+.h-12 { height: 48px; }
+.h-24 { height: 96px; }
+.w-full { width: 100%; }
+.w-10 { width: 40px; }
+.w-11 { width: 44px; }
+.w-12 { width: 48px; }
+.shrink-0 { flex-shrink: 0; }
+
+.min-w-0 { min-width: 0; }
+[class~="max-w-[1440px]"] { max-width: 1440px; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.rounded-lg { border-radius: 8px; }
+.rounded-xl { border-radius: 12px; }
+.rounded-full { border-radius: 999px; }
+
+.border { border: 1px solid var(--line); }
+.border-r { border-right: 1px solid var(--line); }
+.border-b { border-bottom: 1px solid var(--line); }
+.border-t { border-top: 1px solid var(--line); }
+.border-line { border-color: var(--line); }
+.ring-2 { box-shadow: 0 0 0 2px #ffffff; }
+.shadow-soft { box-shadow: var(--shadow-soft); }
+
+.bg-canvas { background: var(--canvas); }
+.bg-panel { background: var(--panel); }
+[class~="bg-panel/95"] { background: rgba(255, 255, 255, 0.95); }
+.bg-white { background: #ffffff; }
+.bg-navy { background: var(--navy); }
+.bg-teal { background: var(--teal); }
+.bg-mint { background: var(--mint); }
+.bg-danger { background: var(--danger); }
+.bg-line { background: var(--line); }
+
+.text-ink { color: var(--ink); }
+.text-muted { color: var(--muted); }
+.text-navy { color: var(--navy); }
+.text-teal { color: var(--teal); }
+.text-danger { color: var(--danger); }
+.text-white { color: #ffffff; }
+
+.uppercase { text-transform: uppercase; }
+.text-xs { font-size: 12px; line-height: 1.35; }
+.text-sm { font-size: 14px; line-height: 1.5; }
+.text-base { font-size: 16px; line-height: 1.5; }
+.text-lg { font-size: 18px; line-height: 1.35; }
+.text-xl { font-size: 20px; line-height: 1.25; }
+.text-2xl { font-size: 24px; line-height: 1.2; }
+.text-3xl { font-size: 30px; line-height: 1.1; }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+.backdrop-blur { backdrop-filter: blur(12px); }
+.hover\:bg-canvas:hover { background: var(--canvas); }
+
+/* ==========================================================================
+   6. Media Queries (Responsividad y Adaptación de Grillas)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+    [class~="lg:grid-cols-[1fr_360px]"] { grid-template-columns: minmax(0, 1fr) 360px; }
+}
+
+@media (max-width: 900px) {
+    .side-nav {
+        position: static;
+        width: auto;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+    .main-panel {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+    }
+}

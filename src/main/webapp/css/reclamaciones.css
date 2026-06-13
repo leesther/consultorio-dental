@@ -1,0 +1,296 @@
+/* =============================================
+   StellarDental - Libro de Reclamaciones
+   ============================================= */
+
+.rec-main {
+    padding: 40px 16px 60px;
+    background-color: #f8f9ff;
+    min-height: 80vh;
+}
+
+.rec-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* HEADER DEL FORMULARIO */
+.rec-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #0b1a2e;
+    border-radius: 16px;
+    padding: 28px 32px;
+}
+
+.rec-header-icon {
+    background-color: rgba(77, 184, 255, 0.15);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rec-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #4db8ff;
+    margin-bottom: 4px;
+}
+
+.rec-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.rec-subtitle {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-top: 6px;
+}
+
+/* SECCIONES */
+.rec-section {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.rec-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000f22;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.rec-step {
+    width: 28px;
+    height: 28px;
+    background-color: #000f22;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* GRID DE CAMPOS */
+.rec-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.rec-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.rec-full {
+    grid-column: 1 / -1;
+}
+
+/* LABELS */
+.rec-label-field {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+/* INPUTS Y SELECTS */
+.rec-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #000f22;
+    background-color: #f8fafc;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.rec-input:focus {
+    outline: none;
+    border-color: #1E7CC9;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(30, 124, 201, 0.1);
+}
+
+select.rec-input {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+/* TEXTAREA */
+.rec-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #000f22;
+    background-color: #f8fafc;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    min-height: 120px;
+    resize: vertical;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.rec-textarea:focus {
+    outline: none;
+    border-color: #1E7CC9;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(30, 124, 201, 0.1);
+}
+
+/* HINT */
+.rec-hint {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+/* CHECKBOX */
+.rec-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rec-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #1E7CC9;
+}
+
+.rec-checkbox-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+}
+
+/* RADIO */
+.rec-radio-group {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.rec-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: #374151;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.rec-radio-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #1E7CC9;
+    cursor: pointer;
+}
+
+/* BOTÓN ENVIAR */
+.rec-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.rec-submit-btn {
+    background-color: #000f22;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 48px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.rec-submit-btn:hover {
+    background-color: #1E7CC9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 124, 201, 0.3);
+}
+
+.rec-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* PRIVACIDAD */
+.rec-privacy {
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+}
+
+.rec-privacy-link {
+    color: #1E7CC9;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.rec-privacy-link:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (min-width: 640px) {
+    .rec-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .rec-main {
+        padding: 48px 24px 80px;
+    }
+}
+
+@media (min-width: 768px) {
+    .rec-main {
+        padding: 56px 32px 80px;
+    }
+
+    .rec-title {
+        font-size: 32px;
+    }
+}.light {
+
+ }

@@ -1,0 +1,106 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    border-bottom: 1px solid #d8e0ea;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(1180px, calc(100% - 40px));
+    min-height: 78px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    color: #0b2a45;
+    text-decoration: none;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.nav-menu-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-menu-item {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 14px;
+    border-radius: 8px;
+    color: #617084;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.nav-menu-item:hover,
+.nav-menu-item.active {
+    background: #f6f8fb;
+    color: #0b2a45;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.patient-portal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 8px;
+    background: #0b2a45;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 12px 28px rgba(16, 32, 51, 0.12);
+    transition: background 160ms ease, transform 160ms ease;
+}
+
+.patient-portal-btn:hover,
+.patient-portal-btn.active-portal {
+    background: #143a5d;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 860px) {
+    .header-content {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 14px 0;
+    }
+
+    .nav-menu {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .nav-menu-list {
+        width: max-content;
+    }
+}

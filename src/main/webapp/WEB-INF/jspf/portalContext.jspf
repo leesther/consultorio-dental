@@ -1,0 +1,38 @@
+<%@ page import="com.stellardental.dao.PortalDao" %>
+<%@ page import="com.stellardental.model.Appointment" %>
+<%@ page import="com.stellardental.model.ClinicalRecord" %>
+<%@ page import="com.stellardental.model.Patient" %>
+<%@ page import="com.stellardental.model.Payment" %>
+<%@ page import="com.stellardental.model.PortalData" %>
+<%@ page import="java.math.BigDecimal" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.Locale" %>
+<%!
+    private String safeText(String value, String fallback) {
+        return value == null || value.isBlank() ? fallback : value;
+    }
+
+    private String money(BigDecimal value) {
+        return "S/ " + (value == null ? BigDecimal.ZERO : value).setScale(2, java.math.RoundingMode.HALF_UP);
+    }
+%>
+<%
+    PortalDao portalDao = new PortalDao();
+    Long currentPatientId = (Long) session.getAttribute("patientId");
+    String currentEmail = (String) session.getAttribute("usuarioEmail");
+    PortalData portal = portalDao.loadForUser(currentPatientId, currentEmail);
+    Patient currentPatient = portal.getPatient();
+    Appointment nextAppointment = portal.getNextAppointment();
+    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter shortDateFormatter = DateTimeFormatter.ofPattern("dd/MM");
+    DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("EEEE", new Locale("es", "PE"));
+    DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MMMM", new Locale("es", "PE"));
+    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale.US);
+    String portalName = currentPatient != null
+            ? currentPatient.getNombreCompleto()
+            : safeText((String) session.getAttribute("usuarioNombre"), "Paciente");
+    String portalInitials = currentPatient != null ? currentPatient.getIniciales() : "DL";
+    String portalMeta = currentPatient != null
+            ? "DNI " + safeText(currentPatient.getDni(), "sin registrar") + " | " + safeText(currentPatient.getTelefono(), "teléfono pendiente")
+            : "Sin paciente vinculado a esta sesi\u00f3n";
+%>
